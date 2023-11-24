@@ -1,13 +1,10 @@
 /** ------------------ IMPORTING PACKAGE ------------------ **/
 const mongoose = require("mongoose");
 
-
+require('dotenv').config();
 /** ------------------ MAKING CONNECTION ------------------ **/
 
-mongoose.connect('mongodb://0.0.0.0:27017', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(process.env.connectionString);
 
 //setting it to db
 const db = mongoose.connection;
