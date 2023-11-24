@@ -4,14 +4,20 @@ const mongoose = require("mongoose");
 
 /** ------------------ MAKING CONNECTION ------------------ **/
 
-mongoose.connect('mongodb://127.0.0.1:27017');
+mongoose.connect('mongodb://0.0.0.0:27017', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 //setting it to db
 const db = mongoose.connection;
 
 /** ------------------ CHECKING CONNECTION ------------------ **/
 //if error occurs
-db.on("error", console.error.bind(console, "Error connecting to DB"));
+db.on("error", (error) => {
+    console.error("Error connecting to DB:", error);
+});
+
 // when db connects successfully
 db.once("open", function () {
     console.log("Successfully connected to DB");
